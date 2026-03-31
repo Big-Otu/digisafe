@@ -1,1 +1,1359 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DigiSafe – TechSecurity @ Grace Chapel Tarkwa</title>
+  <meta name="description" content="Digital Safety Workshop at Grace Chapel, Assemblies of God – Tarkwa. March 27, 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:    #0f1e3c;
+      --blue:    #1a3a6b;
+      --cyan:    #00b4d8;
+      --gold:    #c9a84c;
+      --emerald: #10b981;
+      --light:   #f0f4ff;
+      --white:   #ffffff;
+      --text:    #1e293b;
+      --muted:   #64748b;
+      --glass:   rgba(255,255,255,0.07);
+      --radius:  14px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ── UTILITY ── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .section-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--cyan), var(--emerald));
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      color: var(--navy);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin-bottom: 48px;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--navy);
+      color: rgba(255,255,255,.75);
+      font-size: .82rem;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .topbar a { color: var(--cyan); text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: 0 1px 24px rgba(15,30,60,.10);
+      border-bottom: 2px solid var(--cyan);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo .logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--navy), var(--cyan));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+    .nav-logo span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      font-weight: 700;
+    }
+    .nav-links { display: flex; list-style: none; gap: 4px; }
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all .25s;
+    }
+    .nav-links a:hover {
+      background: var(--light);
+      color: var(--cyan);
+    }
+    .nav-cta {
+      background: var(--navy);
+      color: #fff !important;
+      border-radius: 8px;
+      padding: 9px 20px !important;
+    }
+    .nav-cta:hover { background: var(--blue) !important; color: #fff !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 26px; height: 2.5px; background: var(--navy); border-radius: 4px; transition: .3s; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: var(--navy);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,180,216,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 10% 80%, rgba(201,168,76,.12) 0%, transparent 60%),
+        linear-gradient(135deg, #0a1628 0%, #0f1e3c 50%, #0a1e35 100%);
+    }
+    /* circuit grid overlay */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,180,216,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,180,216,.06) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(0,180,216,.22) 0%, transparent 70%);
+      top: -80px; right: -80px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-left {}
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,180,216,.15);
+      border: 1px solid rgba(0,180,216,.35);
+      color: var(--cyan);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+    .hero-badge i { font-size: .75rem; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--cyan), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 32px;
+      line-height: 1.75;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .9rem;
+      color: rgba(255,255,255,.8);
+    }
+    .hero-meta-item i {
+      color: var(--cyan);
+      font-size: 1rem;
+      width: 20px;
+    }
+    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), #0077a8);
+      color: #fff;
+      padding: 13px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: .95rem;
+      transition: all .3s;
+      box-shadow: 0 6px 20px rgba(0,180,216,.35);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,180,216,.45); }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,.35);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: .95rem;
+      transition: all .3s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.6); }
+
+    /* hero right – image frame */
+    .hero-right {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-img-wrap {
+      position: relative;
+      width: 400px;
+      max-width: 100%;
+    }
+    .hero-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -14px;
+      border: 2px solid rgba(0,180,216,.3);
+      border-radius: 20px;
+      transform: rotate(3deg);
+    }
+    .hero-img-wrap img {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      height: 440px;
+      display: block;
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+    }
+    .hero-stat {
+      position: absolute;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: .85rem;
+      color: #fff;
+    }
+    .hero-stat strong { display: block; font-size: 1.3rem; color: var(--cyan); font-family: 'Playfair Display', serif; }
+    .hero-stat-a { bottom: 40px; left: -30px; }
+    .hero-stat-b { top: 40px; right: -30px; }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: linear-gradient(90deg, var(--navy), var(--blue));
+      overflow: hidden;
+      padding: 12px 0;
+      border-top: 1px solid rgba(0,180,216,.2);
+      border-bottom: 1px solid rgba(0,180,216,.2);
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-item {
+      color: rgba(255,255,255,.8);
+      font-size: .85rem;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .ticker-item i { color: var(--cyan); }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── ABOUT ── */
+    .about { padding: 100px 0; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-images {
+      position: relative;
+      height: 480px;
+    }
+    .about-img-main {
+      position: absolute;
+      top: 0; left: 0;
+      width: 78%;
+      height: 88%;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(15,30,60,.18);
+    }
+    .about-img-sec {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 52%;
+      height: 56%;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 5px solid #fff;
+      box-shadow: 0 12px 36px rgba(15,30,60,.18);
+    }
+    .about-badge-box {
+      position: absolute;
+      top: 50%; left: 60%;
+      transform: translate(-50%, -50%);
+      background: var(--navy);
+      color: #fff;
+      border-radius: 16px;
+      padding: 20px 24px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,.25);
+      min-width: 130px;
+    }
+    .about-badge-box strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--cyan);
+    }
+    .about-badge-box span { font-size: .78rem; color: rgba(255,255,255,.7); }
+    .faith-verse {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: #fff;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-top: 28px;
+      border-left: 4px solid var(--gold);
+    }
+    .faith-verse p { font-style: italic; font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,.88); }
+    .faith-verse cite { display: block; margin-top: 10px; font-size: .82rem; color: var(--gold); }
+    .pillars { display: flex; flex-direction: column; gap: 16px; margin: 28px 0; }
+    .pillar {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px 20px;
+      background: var(--light);
+      border-radius: 12px;
+      transition: transform .25s;
+    }
+    .pillar:hover { transform: translateX(6px); }
+    .pillar-icon {
+      width: 42px; height: 42px; min-width: 42px;
+      background: linear-gradient(135deg, var(--cyan), var(--emerald));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 1rem;
+    }
+    .pillar h4 { font-weight: 600; font-size: .95rem; color: var(--navy); margin-bottom: 3px; }
+    .pillar p { font-size: .85rem; color: var(--muted); }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: linear-gradient(135deg, var(--navy) 0%, #0a2a50 100%);
+      padding: 60px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-card {
+      padding: 24px 16px;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    .stat-card:last-child { border: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+    .stat-label { color: rgba(255,255,255,.65); font-size: .88rem; margin-top: 6px; }
+
+    /* ── AGENDA ── */
+    .agenda { padding: 100px 0; background: var(--light); }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--cyan), var(--emerald));
+    }
+    .tl-item {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all .5s ease;
+    }
+    .tl-item.visible { opacity: 1; transform: translateX(0); }
+    .tl-dot {
+      min-width: 46px; height: 46px;
+      background: var(--navy);
+      border: 3px solid var(--cyan);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--cyan);
+      font-size: .85rem;
+      position: relative;
+      z-index: 1;
+    }
+    .tl-card {
+      flex: 1;
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px 24px;
+      box-shadow: 0 3px 20px rgba(15,30,60,.07);
+      border-left: 3px solid transparent;
+      transition: all .3s;
+    }
+    .tl-card:hover { border-left-color: var(--cyan); transform: translateX(6px); box-shadow: 0 8px 32px rgba(15,30,60,.12); }
+    .tl-time { font-size: .78rem; color: var(--cyan); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+    .tl-title { font-weight: 600; color: var(--navy); font-size: 1rem; margin-bottom: 4px; }
+    .tl-facilitator { font-size: .83rem; color: var(--muted); }
+    .tl-break {
+      background: linear-gradient(135deg, var(--navy), var(--blue)) !important;
+      color: #fff;
+    }
+    .tl-break .tl-time, .tl-break .tl-facilitator { color: rgba(255,255,255,.65) !important; }
+    .tl-break .tl-title { color: #fff !important; }
+
+    /* ── GALLERY ── */
+    .gallery-section { padding: 100px 0; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item:nth-child(1) { grid-row: span 2; }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,30,60,.7) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex; align-items: flex-end;
+      padding: 20px;
+      color: #fff;
+      font-size: .9rem;
+      font-weight: 500;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    /* ── HOSTS ── */
+    .hosts { padding: 100px 0; background: var(--light); }
+    .hosts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .host-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(15,30,60,.09);
+      transition: transform .35s, box-shadow .35s;
+    }
+    .host-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(15,30,60,.15); }
+    .host-img-wrap {
+      position: relative;
+      height: 240px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+    }
+    .host-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top;
+      mix-blend-mode: luminosity;
+      opacity: .8;
+      transition: opacity .3s, mix-blend-mode .3s;
+    }
+    .host-card:hover .host-img-wrap img { opacity: 1; mix-blend-mode: normal; }
+    .host-accent {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--cyan), var(--gold));
+    }
+    .host-body { padding: 24px; }
+    .host-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--navy); font-weight: 700; margin-bottom: 4px; }
+    .host-role { font-size: .82rem; color: var(--cyan); font-weight: 600; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 12px; }
+    .host-bio { font-size: .88rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .host-links { display: flex; gap: 10px; }
+    .host-link {
+      width: 34px; height: 34px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .85rem;
+      transition: all .25s;
+    }
+    .host-link:hover { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .host-quote {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: rgba(255,255,255,.9);
+      padding: 20px;
+      font-style: italic;
+      font-size: .88rem;
+      line-height: 1.6;
+      border-top: 3px solid var(--gold);
+    }
+
+    /* ── RESOURCES ── */
+    .resources { padding: 100px 0; }
+    .resources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .resource-card {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1.5px solid transparent;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .resource-card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle at top right, rgba(0,180,216,.12), transparent 70%);
+    }
+    .resource-card:hover { border-color: var(--cyan); background: #fff; box-shadow: 0 8px 32px rgba(15,30,60,.1); }
+    .resource-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--cyan);
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+    }
+    .resource-card h4 { font-weight: 700; color: var(--navy); margin-bottom: 8px; font-size: 1.05rem; }
+    .resource-card p { font-size: .88rem; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--cyan);
+      font-weight: 600;
+      font-size: .88rem;
+      text-decoration: none;
+      transition: gap .25s;
+    }
+    .resource-link:hover { gap: 12px; }
+
+    /* ── CONTACT ── */
+    .contact { padding: 100px 0; background: var(--light); }
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .contact-info p { color: var(--muted); font-size: .95rem; line-height: 1.7; margin-bottom: 32px; }
+    .contact-items { display: flex; flex-direction: column; gap: 16px; }
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      background: #fff;
+      padding: 16px 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 14px rgba(15,30,60,.06);
+    }
+    .contact-item i {
+      width: 38px; height: 38px; min-width: 38px;
+      background: linear-gradient(135deg, var(--cyan), var(--emerald));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: .9rem;
+    }
+    .contact-item span { font-size: .9rem; color: var(--text); font-weight: 500; }
+    .contact-form-box {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 40px rgba(15,30,60,.10);
+    }
+    .contact-form-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: .85rem; font-weight: 600; color: var(--navy); margin-bottom: 7px; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .92rem;
+      color: var(--text);
+      transition: border-color .25s, box-shadow .25s;
+      background: #fafbff;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0,180,216,.12);
+    }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .3s;
+      box-shadow: 0 6px 22px rgba(15,30,60,.25);
+    }
+    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(15,30,60,.35); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.75);
+      padding: 64px 0 28px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand p { font-size: .88rem; line-height: 1.7; color: rgba(255,255,255,.6); margin-top: 14px; max-width: 280px; }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .footer-logo .logo-icon { background: linear-gradient(135deg, var(--cyan), var(--emerald)); }
+    .footer-logo span { color: #fff; font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; }
+    .footer-col h4 { color: #fff; font-size: .95rem; font-weight: 600; margin-bottom: 18px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .88rem; transition: color .25s; }
+    .footer-col ul li a:hover { color: var(--cyan); }
+    .social-row { display: flex; gap: 10px; margin-top: 20px; }
+    .social-btn {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,.08);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.7);
+      text-decoration: none;
+      font-size: .95rem;
+      transition: all .25s;
+    }
+    .social-btn:hover { background: var(--cyan); color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: .82rem;
+      color: rgba(255,255,255,.4);
+    }
+    .footer-bottom a { color: var(--cyan); text-decoration: none; }
+    .hashtag { color: var(--cyan); font-weight: 600; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; box-shadow: 0 0 80px rgba(0,0,0,.8); }
+    .lb-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ── SCROLL TOP ── */
+    #scrollTop {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 46px; height: 46px;
+      background: var(--navy);
+      border: 2px solid var(--cyan);
+      color: var(--cyan);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      z-index: 500;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all .3s;
+      text-decoration: none;
+    }
+    #scrollTop.show { opacity: 1; transform: translateY(0); }
+    #scrollTop:hover { background: var(--cyan); color: #fff; }
+
+    /* ── FADE ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-right { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-images { height: 300px; margin-bottom: 20px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .hosts-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:nth-child(1) { grid-row: span 1; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .resources-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: #fff; padding: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.1); border-radius: 0 0 16px 16px; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero-meta { justify-content: center; }
+      .hero-buttons { justify-content: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
+      .hosts-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-box { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container">
+      <span><i class="fas fa-map-marker-alt" style="color:var(--cyan);margin-right:6px;"></i>Grace Chapel, Assemblies of God – Tarkwa, Ghana</span>
+      <span>📞 <a href="tel:+233240241898">+233 24 024 1898</a> &nbsp;|&nbsp; ✉️ <a href="cy-dotu1123@t.umat.edu.gh">info@techsecuritygh.org</a></span>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+        <span>TechSecurity Ghana</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#agenda">Agenda</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#hosts">Hosts</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <i class="fas fa-cross"></i> Faith &amp; Technology
+        </div>
+        <h1>Safe in the<br><em>Spirit</em></h1>
+        <p class="hero-sub">A dynamic digital safety workshop equipping the church community with practical tools to protect their personal data, family, and ministry online — rooted in faith, powered by knowledge.</p>
+        <div class="hero-meta">
+          <span class="hero-meta-item"><i class="far fa-calendar-alt"></i> March 27, 2026</span>
+          <span class="hero-meta-item"><i class="far fa-clock"></i> 10:00 AM – 12:00 PM</span>
+          <span class="hero-meta-item"><i class="fas fa-church"></i> Chapel Auditorium</span>
+        </div>
+        <div class="hero-buttons">
+          <a href="#agenda" class="btn-primary"><i class="fas fa-list-ul" style="margin-right:8px;"></i>View Agenda</a>
+          <a href="#contact" class="btn-outline"><i class="fas fa-envelope" style="margin-right:8px;"></i>Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-img-wrap">
+          <img src="images/td4" alt="TechSecurity Ghana Workshop" onerror="this.src='https://placehold.co/400x440/0f1e3c/00b4d8?text=Workshop'">
+          <div class="hero-stat hero-stat-a">
+            <strong>1</strong> Hour Serminar
+          </div>
+          <div class="hero-stat hero-stat-b">
+            <strong>100%</strong> Free Entry
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span class="ticker-item"><i class="fas fa-shield-alt"></i> Digital Safety for Believers</span>
+      <span class="ticker-item"><i class="fas fa-lock"></i> Secure Your Mobile & Social Media</span>
+      <span class="ticker-item"><i class="fas fa-user-secret"></i> Education on spy apps</span>
+      <span class="ticker-item"><i class="fas fa-child"></i> Protect God's Children Online</span>
+      <span class="ticker-item"><i class="fas fa-church"></i> Grace Chapel, Tarkwa</span>
+      <span class="ticker-item"><i class="fas fa-calendar"></i> March 27, 2026</span>
+      <span class="ticker-item"><i class="fas fa-shield-alt"></i> Digital Safety for Believers</span>
+      <span class="ticker-item"><i class="fas fa-lock"></i> Secure Your Mobile & Social Media</span>
+      <span class="ticker-item"><i class="fas fa-fish"></i> Education on spy apps</span>
+      <span class="ticker-item"><i class="fas fa-child"></i> Protect God's Children Online</span>
+      <span class="ticker-item"><i class="fas fa-church"></i> Grace Chapel, Tarkwa</span>
+      <span class="ticker-item"><i class="fas fa-calendar"></i> March 27, 2026</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images reveal">
+          <img src="digisafe/images/flyer.jpeg" alt="Workshop" class="about-img-main" onerror="this.src='https://placehold.co/420x360/1a3a6b/00b4d8?text=Workshop'">
+          <img src="digisafe/images/tt" alt="Team" class="about-img-sec" onerror="this.src='https://placehold.co/260x280/0f1e3c/c9a84c?text=Team'">
+          <div class="about-badge-box">
+            <strong>3rd Year</strong>
+            <span> Cybersecurity of University Of Mines and Technology</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <span class="section-tag">About the Event</span>
+          <h2 class="section-title">Where Faith Meets the Digital Age</h2>
+          <p class="section-sub">Churches, families, and individuals are increasingly vulnerable to scams, identity theft, and online manipulation. We're here to change that.</p>
+          <div class="pillars">
+            <div class="pillar">
+              <div class="pillar-icon"><i class="fas fa-user-shield"></i></div>
+              <div>
+                <h4>Personal Data Protection</h4>
+                <p>Learn to safeguard your identity, passwords, and digital footprint.</p>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-icon"><i class="fas fa-mobile-screen"></i></div>
+              <div>
+                <h4>Mobile & Social Security</h4>
+                <p>Hands-on demos to lock down your devices and accounts.</p>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-icon"><i class="fas fa-child-reaching"></i></div>
+              <div>
+                <h4>Family-Focused Sessions</h4>
+                <p>Practical tools to keep children of God and Participants safe in the digital world.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faith-verse">
+            <p>"Be wise as serpents and innocent as doves — this extends to our digital lives."</p>
+            <cite>— Matthew 10:16 (adapted)</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Hour of Training</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-num">9</div>
+          <div class="stat-label">Expert Sessions</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-num">Free</div>
+          <div class="stat-label">Entry for All</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Faith-Grounded Content</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AGENDA -->
+  <section class="agenda" id="agenda">
+    <div class="container">
+      <div style="text-align:center;" class="reveal">
+        <span class="section-tag">Programme</span>
+        <h2 class="section-title">Event Agenda</h2>
+        <p class="section-sub" style="margin:0 auto 48px;">A carefully curated day of learning, testimony, and fellowship designed to empower every believer.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-dot"><i class="fas fa-pray"></i></div>
+          <div class="tl-card">
+            <div class="tl-time">10:00 – 10:20 AM</div>
+            <div class="tl-title">Welcome & Opening Prayer</div>
+            <div class="tl-facilitator">Pastor Kwame Osei</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"><i class="fas fa-church"></i></div>
+          <div class="tl-card">
+            <div class="tl-time">10:20 – 10:40 AM</div>
+            <div class="tl-title">Why Digital Safety Matters to the Church</div>
+            <div class="tl-facilitator">Botuo Theresah — TechSecurity Ghana</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"><i class="fas fa-user-secret"></i></div>
+          <div class="tl-card">
+            <div class="tl-time">10:40 – 11:15 AM</div>
+            <div class="tl-title">Education on spy apps on devicesx</div>
+            <div class="tl-facilitator">Otu Aboah Dennis — TechSecurity Ghana</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"><i class="fas fa-microphone"></i></div>
+          <div class="tl-card tl-break">
+            <div class="tl-time">11:15 – 11:30 AM</div>
+            <div class="tl-title">Openig for sharing understanding</div>
+            <div class="tl-facilitator">Participants</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"><i class="fas fa-question"></i></div>
+          <div class="tl-card">
+            <div class="tl-time">11:30 AM – 11:45 PM</div>
+            <div class="tl-title">Q & A </div>
+            <div class="tl-facilitator">TechSecurity Team</div>
+          </div>
+        </div>
+        
+        <div class="tl-item reveal">
+          <div class="tl-dot"><i class="fas fa-microphone"></i></div>
+          <div class="tl-card">
+            <div class="tl-time">11:45 – 11:50 PM</div>
+            <div class="tl-title">Vote of Thanks</div>
+            <div class="tl-facilitator">TechSecurity</div>
+          </div>
+        </div>
+        
+        <div class="tl-item reveal">
+          <div class="tl-dot"><i class="fas fa-cross"></i></div>
+          <div class="tl-card">
+            <div class="tl-time">11:50 – 12:00 PM</div>
+            <div class="tl-title">Closing Remarks</div>
+            <div class="tl-facilitator">Mrs. Evelyn Donkor</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <div class="container">
+      <div style="text-align:center;" class="reveal">
+        <span class="section-tag">Gallery</span>
+        <h2 class="section-title">Photo Highlights</h2>
+        <p class="section-sub" style="margin:0 auto 40px;">Capturing the spirit of learning, fellowship, and empowerment.</p>
+      </div>
+      <div class="gallery-grid reveal">
+        <div class="gallery-item" onclick="openLightbox('digisafe/images/c1.jpg')">
+          <img src="digisafe/images/c1.jpg" alt="Workshop Setup" onerror="this.src='https://placehold.co/400x500/0f1e3c/00b4d8?text=Workshop'">
+          <div class="gallery-overlay">Workshop Setup</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('digisafe/images/c3.jpg')">
+          <img src="digisafe/images/c3.jpg" alt="Team in Action" onerror="this.src='https://placehold.co/380x240/1a3a6b/c9a84c?text=Team'">
+          <div class="gallery-overlay">Team in Action</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('digisafe/images/c5.jpg')">
+          <img src="digisafe/images/c5.jpg" alt="Community Session" onerror="this.src='https://placehold.co/380x240/10b981/ffffff?text=Community'">
+          <div class="gallery-overlay">Community Session</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('digisafe/images/td1.jpg')">
+          <img src="digisafe/images/td1.jpg" alt="Tech Demo" onerror="this.src='https://placehold.co/380x240/0f1e3c/00b4d8?text=Tech+Demo'">
+          <div class="gallery-overlay">Tech Demo</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('digisafe/images/m1.jpg')">
+          <img src="digisafe/images/m1.jpg" alt="Live Help Desk" onerror="this.src='https://placehold.co/380x240/1a3a6b/ffffff?text=Help+Desk'">
+          <div class="gallery-overlay">Live Help Desk</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('digisafe/images/m3.jpg')">
+          <img src="digisafe/images/m3.jpg" alt="Live Help Desk" onerror="this.src='https://placehold.co/380x240/1a3a6b/ffffff?text=Help+Desk'">
+          <div class="gallery-overlay">Live Help Desk</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('digisafe/images/d2.jpg')">
+          <img src="digisafe/images/d2.jpg" alt="Live Help Desk" onerror="this.src='https://placehold.co/380x240/1a3a6b/ffffff?text=Help+Desk'">
+          <div class="gallery-overlay">Live Help Desk</div>
+        </div>
+        <div style="max-width: 800px;">
+          <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fweb.facebook.com%2Freel%2F2159333404833696%2F&show_text=true&width=260&t=0" width="260" height="591" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lb-close" onclick="closeLightbox()">&times;</span>
+    <img id="lbImg" src="" alt="Gallery Image">
+  </div>
+
+  <!-- HOSTS -->
+  <section class="hosts" id="hosts">
+    <div class="container">
+      <div style="text-align:center;" class="reveal">
+        <span class="section-tag">Meet the Team</span>
+        <h2 class="section-title">Your Hosts & Presenters</h2>
+        <p class="section-sub" style="margin:0 auto 48px;">IT professionals, believers, and digital missionaries passionate about equipping the Church for the digital frontier.</p>
+      </div>
+      <div class="hosts-grid">
+     
+        <div class="host-card reveal">
+          <div class="host-img-wrap">
+            <img src="digisafe/images/tb.jpg" alt="Botuo Theresah" onerror="this.src='https://placehold.co/300x240/0f1e3c/00b4d8?text=Theresah'">
+            <div class="host-accent"></div>
+          </div>
+          <div class="host-body">
+            <div class="host-name">Botuo Theresah</div>
+            <div class="host-role">Digital Safety Educator</div>
+            <div class="host-bio">Theresah an undergraduate Cybersecurity student bringing practical, accessible education to diverse communities on our stay in the digital world</div>
+            <div class="host-links">
+              <a href="botuothess@gmail.com" class="host-link"><i class="fas fa-envelope"></i></a>
+              <a href="https://www.linkedin.com/in/botuo-theresah-04492a371?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="text-blue-400 mt-4 inline-block" target="_blank" class="host-link"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div class="host-quote">"Our faith is strong — and so should our passwords."</div>
+        </div>
+        <div class="host-card reveal">
+          <div class="host-img-wrap">
+            <img src="digisafe/images/do.jpg" alt="Otu Aboah Dennis" onerror="this.src='https://placehold.co/300x240/0f1e3c/c9a84c?text=Dennis'">
+            <div class="host-accent"></div>
+          </div>
+          <div class="host-body">
+            <div class="host-name">Otu Aboah Dennis</div>
+            <div class="host-role">Web Developer & Workshop Presenter</div>
+            <div class="host-bio">Dennis crafts digital experiences and bridges the gap between technology and the faith community. He developed this very platform.</div>
+            <div class="host-links">
+              <a href="https://www.linkedin.com/in/dennis-otu-aboah-9422453b0/" target="_blank" class="host-link"><i class="fab fa-linkedin-in"></i></a>
+              <a href="cy-dotu1123@st.umat.edu.gh" class="host-link"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="host-quote">"In the digital sphere of security, dont trust anyone."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="resources" id="resources">
+    <div class="container">
+      <div style="text-align:center;" class="reveal">
+        <span class="section-tag">Downloads</span>
+        <h2 class="section-title">Event Resources</h2>
+        <p class="section-sub" style="margin:0 auto 48px;">Take home the knowledge. Download our free guides and checklists below.</p>
+      </div>
+      <div class="resources-grid">
+        <div class="resource-card reveal">
+          <div class="resource-icon"><i class="fas fa-file-shield"></i></div>
+          <h4>Identifying Spy Apss</h4>
+          <p>A step-by-step guide to protect your accounts from impersonation, takeover, and data leaks across all major platforms.</p>
+          <a href="digisafe/Spy App.pdf" class="resource-link" download>Download PDF <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="resource-card reveal">
+          <div class="resource-icon"><i class="fas fa-mobile-screen-button"></i></div>
+          <h4>Mobile Safety Quick Guide</h4>
+          <p>Essential settings to lock down your smartphone — covers Android & iOS, app permissions, and two-factor authentication setup.</p>
+          <a href="#contact" class="resource-link">Request a Copy <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="resource-card reveal">
+          <div class="resource-icon"><i class="fas fa-child-reaching"></i></div>
+          <h4>Keeping Kids Safe Online – Parent Pack</h4>
+          <p>Conversation starters, parental control guides, and age-appropriate digital safety tips for every family.</p>
+          <a href="#contact" class="resource-link">Request a Copy <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="resource-card reveal">
+          <div class="resource-icon"><i class="fas fa-church"></i></div>
+          <h4>Church Digital Safety Policy Template</h4>
+          <p>A ready-to-use policy template for your church or ministry to protect congregational data and communications.</p>
+          <a href="#contact" class="resource-link">Request a Copy <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="reveal">
+          <span class="section-tag">Get in Touch</span>
+          <h3>We'd love to hear from you</h3>
+          <p>Have a question about the workshop, resources, or TechSecurity Ghana's work? Reach out — we're happy to help.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>+233 24 024 1898</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>cy-dotu1123"st.umat.edu.gh</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Grace Chapel, Assemblies of God – Tarkwa, Ghana</span>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-whatsapp"></i>
+              <span><a href="https://wa.me/233240241898" target="_blank" style="color:var(--text);text-decoration:none;">Chat on WhatsApp</a></span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-box reveal">
+          <h3>Send a Message</h3>
+          <form action="https://formspree.io/f/mojpdjdo" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name *</label>
+                <input type="text" id="fname" name="first_name" required placeholder="Kofi">
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name *</label>
+                <input type="text" id="lname" name="last_name" required placeholder="Mensah">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="you@email.com">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+233 ...">
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message *</label>
+              <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
+            </div>
+            <button type="submit" class="submit-btn"><i class="fas fa-paper-plane" style="margin-right:8px;"></i>Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="footer-logo">
+            <div class="logo-icon" style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;"><i class="fas fa-shield-halved"></i></div>
+            <span>TechSecurity </span>
+          </a>
+          <p>Equipping the Church for the digital frontier — one believer at a time. In partnership with CyberSafe Ghana Initiative.</p>
+          <div class="social-row">
+            <a href="https://www.linkedin.com/in/dennis-otu-aboah-9422453b0/" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.tiktok.com/@dennisotu238" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/233240241898" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+            <a href="cy-dotu1123@st.umat.edu.gh" class="social-btn"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About the Event</a></li>
+            <li><a href="#agenda">Full Agenda</a></li>
+            <li><a href="#gallery">Photo Gallery</a></li>
+            <li><a href="#hosts">Meet the Team</a></li>
+            <li><a href="#resources">Resources</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+233240241898">+233 24 024 1898/a></li>
+            <li><a href="cy-dotu@st.umat.edu.gh">info@techsecuritygh.org</a></li>
+            <li><a href="https://wa.me/233240241898" target="_blank">WhatsApp Us</a></li>
+            <li><a href="#">TechSecurity</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 TechSecurity. All Rights Reserved.</span>
+        <span class="hashtag">#SafeInTheSpiritGH #CybersecurityGH #SocialMediaSecurityAwareness</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCROLL TOP -->
+  <a id="scrollTop" href="#hero"><i class="fas fa-arrow-up"></i></a>
+
+  <script>
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
+          document.getElementById('navLinks').classList.remove('open');
+        }
+      });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal, .tl-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Scroll top button
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('show', window.scrollY > 400);
+    });
+
+    // Lightbox
+    function openLightbox(src) {
+      document.getElementById('lbImg').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>
